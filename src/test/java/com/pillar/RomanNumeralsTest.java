@@ -2,38 +2,40 @@ package com.pillar;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+
+import org.junit.Before;
 import org.junit.Test;
 
 public class RomanNumeralsTest {
-
-	@Test
-	public void number1IsNumeralI() throws Exception {
-		assertEquals("I", new RomanNumerals().getNumeral(1));
+	
+	private Map<String, Integer> cases;
+	
+	@Before
+	public void setup() throws Exception {
+		this.cases = new LinkedHashMap<String, Integer>();
+		cases.put("I", 1);
+		cases.put("III", 3);
+		cases.put("IX", 9);
+		cases.put("MLXVI", 1066);
+		cases.put("CMLXXXIX", 989);
+		cases.put("MCMLXXXIX", 1989);
 	}
 	
 	@Test
-	public void number3IsNumeralIII() throws Exception {
-		assertEquals("III", new RomanNumerals().getNumeral(3));
+	public void testNumberToNumeral() throws Exception {
+		for(Entry<String, Integer> entry : cases.entrySet()){
+			assertEquals(entry.getKey(), new RomanNumerals().getNumeral(entry.getValue()));
+		}
 	}
 	
 	@Test
-	public void number9IsNumeralIX() throws Exception {
-		assertEquals("IX", new RomanNumerals().getNumeral(9));
-	}
-	
-	@Test
-	public void number1066IsNumeralMLXVI() throws Exception {
-		assertEquals("MLXVI", new RomanNumerals().getNumeral(1066));
-	}
-	
-	@Test
-	public void number989IsNumeralCMLXXXIX() throws Exception {
-		assertEquals("CMLXXXIX", new RomanNumerals().getNumeral(989));
-	}
-	
-	@Test
-	public void number1989IsNumeralMCMLXXXIX() throws Exception {
-		assertEquals("MCMLXXXIX", new RomanNumerals().getNumeral(1989));
+	public void testNumeralToNumber() throws Exception {
+		for(Entry<String, Integer> entry : cases.entrySet()){
+			assertEquals(entry.getValue(), new RomanNumerals().getNumber(entry.getKey()));
+		}
 	}
 	
 }

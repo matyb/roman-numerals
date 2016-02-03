@@ -38,4 +38,9 @@ public class RomanNumerals {
         return string.toString();
 	}
 
+	public Object getNumber(String roman) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
