@@ -27,6 +27,11 @@ public class RomanNumeralsTest {
 	}
 	
 	@Test
+	public void number989IsNumeralCMLXXXIX() throws Exception {
+		assertEquals("CMLXXXIX", new RomanNumerals().getNumeral(989));
+	}
+	
+	@Test
 	public void number1989IsNumeralMCMLXXXIX() throws Exception {
 		assertEquals("MCMLXXXIX", new RomanNumerals().getNumeral(1989));
 	}
