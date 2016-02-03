@@ -27,18 +27,33 @@ public class RomanNumerals {
 	}
 
 	private String toNumeral(Integer number, List<Entry<Integer, String>> tuple) {
+		if(number == 0){
+			return "";
+		}
 		Entry<Integer, String> lower = tuple.get(0);
 		if(tuple.size() == 1){
 			return lower.getValue();
 		} else {
 			Entry<Integer, String> upper = tuple.get(1);
-			if(upper.getKey() - lower.getKey() == number){
-				return lower.getValue() + upper.getValue();
-			}else if(upper.getKey() - number < lower.getKey()){
-				tuple = findAdjacentNumerals(lower.getKey() - 1);
-				return toNumeral(number, Arrays.asList(tuple.get(0), upper));
-			}else{
-				return String.format("%s%s%s", lower.getValue(),lower.getValue(),lower.getValue());
+			if(upper == null){
+				return lower.getValue() + getNumeral(number - lower.getKey());
+			} else {
+				if(upper.getKey() - lower.getKey() == number){
+					return lower.getValue() + upper.getValue();
+				}else if(3 * lower.getKey() == number){
+					return String.format("%s%s%s", lower.getValue(),lower.getValue(),lower.getValue());
+				}else if(upper.getKey() > number){
+					Entry<Integer,String> lowest = findAdjacentNumerals(lower.getKey() - 1).get(0);
+					if(upper.getKey() - lower.getKey() == number){
+						return lower.getValue() + upper.getValue() + getNumeral(number - (lower.getKey() - upper.getKey()));
+					}else if(upper.getKey() - lowest.getKey() <= number){
+						return lowest.getValue() + upper.getValue() + getNumeral(number - (upper.getKey() - lowest.getKey()));
+					}else{
+						return lower.getValue() + lowest.getValue() + getNumeral(number - (lower.getKey() + lowest.getKey()));
+					}
+				}else{
+					return lower.getValue() + upper.getValue() + getNumeral(number - upper.getKey() - lower.getKey());
+				}
 			}
 		}
 	}
