@@ -1,13 +1,21 @@
 package com.pillar;
 
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+/**
+ * A class for converting to and from roman numerals and arabic integers.
+ */
 public class RomanNumerals {
 
-	private Map<String, Integer> numberByNumeral;
+	private final Map<String, Integer> numberByNumeral;
 	
+	/**
+	 * Constructs an instance capable of converting from a string of roman
+	 * numberals into an arabic integer, and vice versa.
+	 */
 	public RomanNumerals() {
 		Map<String, Integer> numberByNumeral = new LinkedHashMap<String, Integer>();
 		numberByNumeral.put("M", 1000);
@@ -23,9 +31,15 @@ public class RomanNumerals {
 		numberByNumeral.put("V", 5);
 		numberByNumeral.put("IV", 4);
 		numberByNumeral.put("I", 1);
-		this.numberByNumeral = numberByNumeral;
+		this.numberByNumeral = Collections.unmodifiableMap(numberByNumeral);
 	}
 	
+	/**
+	 * Convert an arabic integer into a string of roman numerals.
+	 * 
+	 * @param arabic integer
+	 * @return roman numerals
+	 */
 	public String getNumeral(Integer number) {
 		StringBuilder string = new StringBuilder();  
         int remainder = number;
@@ -38,20 +52,40 @@ public class RomanNumerals {
         return string.toString();
 	}
 
+	/**
+	 * Convert a string of roman numerals into an arabic integer.
+	 * 
+	 * @param roman numerals
+	 * @return arabic integer
+	 */
 	public Integer getNumber(String roman) {
 		Integer number = 0, lastValue = 0;
 	    char[] romanNumerals = roman.toUpperCase().toCharArray();
 	    for (int i = romanNumerals.length - 1; i > -1 ; i--) {
 	    	String character = String.valueOf(romanNumerals[i]);
 	    	Integer value = numberByNumeral.get(character);
-	    	number = toNumber(value, lastValue, number);
+	    	number += toNumber(value, lastValue);
 	    	lastValue = value;
 	    }
 	    return number;
 	}
 	
-	private Integer toNumber(Integer value, Integer lastValue, Integer lastNumber){
-		return lastValue > value ? lastNumber - value : lastNumber + value;
+	/**
+	 * Assumes traversal from Right to Left when totaling the arabic value of
+	 * roman numerals, can resolve an arabic value from 2 adjacent numeral's
+	 * arabic values.
+	 * 
+	 * @param value
+	 *            arabic value of currently iterated numeral (left of)
+	 * @param lastValue
+	 *            arabic value of last iterated numeral right and adjacent of
+	 *            the currently iterated numeral
+	 * @return negated value if currently iterated numeral is a lower value than
+	 *         the previously iterated numeral or the positively signed value if
+	 *         not.
+	 */
+	private Integer toNumber(Integer value, Integer lastValue){
+		return lastValue > value ? -1 * value : value;
 	}
 
 }
