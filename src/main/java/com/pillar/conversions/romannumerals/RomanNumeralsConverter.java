@@ -1,4 +1,4 @@
-package com.pillar;
+package com.pillar.conversions.romannumerals;
 
 import java.util.Collections;
 import java.util.LinkedHashMap;
@@ -8,7 +8,7 @@ import java.util.Map.Entry;
 /**
  * A class for converting to and from roman numerals and arabic integers.
  */
-public class RomanNumerals {
+public class RomanNumeralsConverter implements NumeralNumericConverter {
 
 	private final Map<String, Integer> numberByNumeral;
 	
@@ -16,7 +16,7 @@ public class RomanNumerals {
 	 * Constructs an instance capable of converting from a string of roman
 	 * numerals into an arabic integer, and vice versa.
 	 */
-	public RomanNumerals() {
+	public RomanNumeralsConverter() {
 		Map<String, Integer> numberByNumeral = new LinkedHashMap<String, Integer>();
 		numberByNumeral.put("M", 1000);
 		numberByNumeral.put("CM", 900);

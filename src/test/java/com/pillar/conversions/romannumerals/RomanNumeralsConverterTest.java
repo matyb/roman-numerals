@@ -1,4 +1,4 @@
-package com.pillar;
+package com.pillar.conversions.romannumerals;
 
 import static org.junit.Assert.assertEquals;
 
@@ -9,7 +9,9 @@ import java.util.Map.Entry;
 import org.junit.Before;
 import org.junit.Test;
 
-public class RomanNumeralsTest {
+import com.pillar.conversions.romannumerals.RomanNumeralsConverter;
+
+public class RomanNumeralsConverterTest {
 	
 	private Map<String, Integer> cases;
 	
@@ -31,7 +33,7 @@ public class RomanNumeralsTest {
 	 */
 	@Test
 	public void testNumberToNumeral() throws Exception {
-		RomanNumerals romanNumerals = new RomanNumerals();
+		RomanNumeralsConverter romanNumerals = new RomanNumeralsConverter();
 		for(Entry<String, Integer> entry : cases.entrySet()){
 			assertEquals(entry.getKey(), romanNumerals.getNumeral(entry.getValue()));
 		}
@@ -44,7 +46,7 @@ public class RomanNumeralsTest {
 	 */
 	@Test
 	public void testNumeralToNumber() throws Exception {
-		RomanNumerals romanNumerals = new RomanNumerals();
+		RomanNumeralsConverter romanNumerals = new RomanNumeralsConverter();
 		for(Entry<String, Integer> entry : cases.entrySet()){
 			assertEquals(entry.getValue(), romanNumerals.getNumber(entry.getKey()));
 		}

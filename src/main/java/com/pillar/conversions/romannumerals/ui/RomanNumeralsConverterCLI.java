@@ -1,14 +1,14 @@
-package com.pillar.ui;
+package com.pillar.conversions.romannumerals.ui;
 
-import com.pillar.RomanNumerals;
+import com.pillar.conversions.romannumerals.RomanNumeralsConverter;
 
-public class ConverterCLI {
+public class RomanNumeralsConverterCLI {
 
-	private RomanNumerals romanNumeralsConverter = new RomanNumerals();
+	private RomanNumeralsConverter romanNumeralsConverter = new RomanNumeralsConverter();
 	
 	public static void main(String[] args) {
 		String line = "";
-		ConverterCLI cli = new ConverterCLI();
+		RomanNumeralsConverterCLI cli = new RomanNumeralsConverterCLI();
 		while(!line.equals("Q")){
 			String info1 = "Enter a roman numeral to convert to an integer, or an integer to convert to a roman numeral.";
 			String info2 = "Entering 'Q' without quotes will exit:";

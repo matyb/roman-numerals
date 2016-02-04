@@ -1,11 +1,11 @@
-package com.pillar;
+package com.pillar.conversions.romannumerals.ui;
 
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.pillar.ui.ConverterCLI;
+import com.pillar.conversions.romannumerals.ui.RomanNumeralsConverterCLI;
 
 import cucumber.api.DataTable;
 import cucumber.api.java.en.Given;
@@ -14,13 +14,13 @@ import cucumber.api.java.en.When;
 
 public class RomanNumeralsConversionSteps { 
 
-	private ConverterCLI converter;
+	private RomanNumeralsConverterCLI converter;
 	private DataTable data;
 	private List<String> output;
 	
 	@Given("^I have started the converter$")
 	public void i_have_started_the_converter(DataTable arg1) throws Throwable {
-		converter = new ConverterCLI();
+		converter = new RomanNumeralsConverterCLI();
 		data = arg1;
 		output = new ArrayList<String>(data.getGherkinRows().size() - 1);
 	}
