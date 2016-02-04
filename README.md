@@ -16,4 +16,4 @@ Remaining Issues:
 * strong assumption that the Roman Numeral system is adequately deprecated such that it is no longer subject to change
 * entering invalid input crashes this application. validation is something that warrants a dialog with the business.
 * maven, travis, the unit and acceptance level testing; overkill. assuming developers will ever need to do something with this code, I feel they'll either be grateful or indifferent.
-* front end is CLI, REST + shiny SPA would could be cool. 
+* front end is CLI, REST + shiny SPA would could be cool probably. 
