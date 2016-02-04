@@ -14,7 +14,7 @@ public class RomanNumerals {
 	
 	/**
 	 * Constructs an instance capable of converting from a string of roman
-	 * numberals into an arabic integer, and vice versa.
+	 * numerals into an arabic integer, and vice versa.
 	 */
 	public RomanNumerals() {
 		Map<String, Integer> numberByNumeral = new LinkedHashMap<String, Integer>();

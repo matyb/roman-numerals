@@ -24,6 +24,11 @@ public class RomanNumeralsTest {
 		cases.put("MCMLXXXIX", 1989);
 	}
 	
+	/**
+	 * <b>TODO: I KNOW THIS IS GENERALLY A BAD IDEA TO TEST > 1 THING IN ONE
+	 * UNIT TEST! but enforcing symmetry between conversions felt more valuable.<b>
+	 * oh and comments in tests are usually a code smell, but - i wanted to explain.
+	 */
 	@Test
 	public void testNumberToNumeral() throws Exception {
 		RomanNumerals romanNumerals = new RomanNumerals();
@@ -32,6 +37,11 @@ public class RomanNumeralsTest {
 		}
 	}
 	
+	/**
+	 * <b>TODO: I KNOW THIS IS GENERALLY A BAD IDEA TO TEST > 1 THING IN ONE
+	 * UNIT TEST! but enforcing symmetry between conversions felt more valuable.<b>
+	 * oh and comments in tests are usually a code smell, but - i wanted to explain.
+	 */
 	@Test
 	public void testNumeralToNumber() throws Exception {
 		RomanNumerals romanNumerals = new RomanNumerals();
