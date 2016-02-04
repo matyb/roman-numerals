@@ -5,10 +5,12 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.pillar.conversions.utils.Converter;
+
 /**
  * A class for converting to and from roman numerals and arabic integers.
  */
-public class RomanNumeralsConverter implements NumeralNumericConverter {
+public class RomanNumeralsConverter implements Converter<Integer,String> {
 
 	private final Map<String, Integer> numberByNumeral;
 	
@@ -40,7 +42,7 @@ public class RomanNumeralsConverter implements NumeralNumericConverter {
 	 * @param arabic integer
 	 * @return roman numerals
 	 */
-	public String getNumeral(Integer number) {
+	public String from(Integer number) {
 		StringBuilder string = new StringBuilder();  
         int remainder = number;
         for (Entry<String, Integer> entry : numberByNumeral.entrySet()) {
@@ -58,7 +60,7 @@ public class RomanNumeralsConverter implements NumeralNumericConverter {
 	 * @param roman numerals
 	 * @return arabic integer
 	 */
-	public Integer getNumber(String roman) {
+	public Integer to(String roman) {
 		Integer number = 0, lastValue = 0;
 	    char[] romanNumerals = roman.toUpperCase().toCharArray();
 	    for (int i = romanNumerals.length - 1; i > -1 ; i--) {

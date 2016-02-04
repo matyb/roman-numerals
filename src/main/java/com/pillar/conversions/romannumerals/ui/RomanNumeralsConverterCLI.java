@@ -2,6 +2,9 @@ package com.pillar.conversions.romannumerals.ui;
 
 import com.pillar.conversions.romannumerals.RomanNumeralsConverter;
 
+/**
+ * A Command line interface for Converter instances.
+ */
 public class RomanNumeralsConverterCLI {
 
 	private RomanNumeralsConverter romanNumeralsConverter = new RomanNumeralsConverter();
@@ -22,10 +25,10 @@ public class RomanNumeralsConverterCLI {
 		String output = "";
 		try{
 			if(line.matches("\\d+")){
-				output = romanNumeralsConverter.getNumeral(Integer.parseInt(line));
+				output = romanNumeralsConverter.from(Integer.parseInt(line));
 				System.out.println(String.format("For the number you entered: %s the numeral equivalent is: %s", line, output));
 			}else{
-				output = "" + romanNumeralsConverter.getNumber(line);
+				output = "" + romanNumeralsConverter.to(line);
 				System.out.println(String.format("For the numeral you entered: %s the numeric equivalent is: %s", line, output));
 			}
 		}catch(NumberFormatException pe){

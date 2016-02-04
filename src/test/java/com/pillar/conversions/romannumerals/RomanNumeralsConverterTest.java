@@ -17,7 +17,7 @@ public class RomanNumeralsConverterTest {
 	
 	@Before
 	public void setup() throws Exception {
-		this.cases = new LinkedHashMap<String, Integer>();
+		this.cases = new LinkedHashMap<>();
 		cases.put("I", 1);
 		cases.put("III", 3);
 		cases.put("IX", 9);
@@ -35,7 +35,7 @@ public class RomanNumeralsConverterTest {
 	public void testNumberToNumeral() throws Exception {
 		RomanNumeralsConverter romanNumerals = new RomanNumeralsConverter();
 		for(Entry<String, Integer> entry : cases.entrySet()){
-			assertEquals(entry.getKey(), romanNumerals.getNumeral(entry.getValue()));
+			assertEquals(entry.getKey(), romanNumerals.from(entry.getValue()));
 		}
 	}
 	
@@ -48,7 +48,7 @@ public class RomanNumeralsConverterTest {
 	public void testNumeralToNumber() throws Exception {
 		RomanNumeralsConverter romanNumerals = new RomanNumeralsConverter();
 		for(Entry<String, Integer> entry : cases.entrySet()){
-			assertEquals(entry.getValue(), romanNumerals.getNumber(entry.getKey()));
+			assertEquals(entry.getValue(), romanNumerals.to(entry.getKey()));
 		}
 	}
 	

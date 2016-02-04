@@ -1,4 +1,4 @@
-package com.pillar.conversions.romannumerals.ui;
+package feature;
 
 import static org.junit.Assert.assertEquals;
 
@@ -22,7 +22,7 @@ public class RomanNumeralsConversionSteps {
 	public void i_have_started_the_converter(DataTable arg1) throws Throwable {
 		converter = new RomanNumeralsConverterCLI();
 		data = arg1;
-		output = new ArrayList<String>(data.getGherkinRows().size() - 1);
+		output = new ArrayList<>(data.getGherkinRows().size() - 1);
 	}
 
 	@When("^I enter \\$number$")
