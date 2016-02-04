@@ -26,15 +26,17 @@ public class RomanNumeralsTest {
 	
 	@Test
 	public void testNumberToNumeral() throws Exception {
+		RomanNumerals romanNumerals = new RomanNumerals();
 		for(Entry<String, Integer> entry : cases.entrySet()){
-			assertEquals(entry.getKey(), new RomanNumerals().getNumeral(entry.getValue()));
+			assertEquals(entry.getKey(), romanNumerals.getNumeral(entry.getValue()));
 		}
 	}
 	
 	@Test
 	public void testNumeralToNumber() throws Exception {
+		RomanNumerals romanNumerals = new RomanNumerals();
 		for(Entry<String, Integer> entry : cases.entrySet()){
-			assertEquals(entry.getValue(), new RomanNumerals().getNumber(entry.getKey()));
+			assertEquals(entry.getValue(), romanNumerals.getNumber(entry.getKey()));
 		}
 	}
 	
