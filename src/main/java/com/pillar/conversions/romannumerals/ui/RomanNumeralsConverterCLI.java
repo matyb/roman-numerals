@@ -13,10 +13,12 @@ public class RomanNumeralsConverterCLI {
 		String line = "";
 		RomanNumeralsConverterCLI cli = new RomanNumeralsConverterCLI();
 		while(!line.equals("Q")){
+			if(!"".equals(line)){
+				cli.input(line);
+			}
 			String info1 = "Enter a roman numeral to convert to an integer, or an integer to convert to a roman numeral.";
 			String info2 = "Entering 'Q' without quotes will exit:";
 			line = System.console().readLine(info1 + System.getProperty("line.separator") + info2 + System.getProperty("line.separator"));
-			cli.input(line);
 		}
 		System.out.println("Thanks! Bye!");
 	}
