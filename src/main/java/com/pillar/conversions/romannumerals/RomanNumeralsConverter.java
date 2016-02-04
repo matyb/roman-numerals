@@ -43,15 +43,15 @@ public class RomanNumeralsConverter implements Converter<Integer,String> {
 	 * @return roman numerals
 	 */
 	public String from(Integer number) {
-        StringBuilder string = new StringBuilder();  
-        int remainder = number;
-        for (Entry<String, Integer> entry : numberByNumeral.entrySet()) {
-           while (remainder >= entry.getValue()) {
-              string.append(entry.getKey());
-              remainder -= entry.getValue();
-           }
-        }
-        return string.toString();
+            StringBuilder string = new StringBuilder();  
+            int remainder = number;
+            for (Entry<String, Integer> entry : numberByNumeral.entrySet()) {
+               while (remainder >= entry.getValue()) {
+                  string.append(entry.getKey());
+                  remainder -= entry.getValue();
+               }
+            }
+            return string.toString();
 	}
 
 	/**
@@ -61,15 +61,15 @@ public class RomanNumeralsConverter implements Converter<Integer,String> {
 	 * @return arabic integer
 	 */
 	public Integer to(String roman) {
-		Integer number = 0, lastValue = 0;
-	    char[] romanNumerals = roman.toUpperCase().toCharArray();
-	    for (int i = romanNumerals.length - 1; i > -1 ; i--) {
-	    	String character = String.valueOf(romanNumerals[i]);
-	    	Integer value = numberByNumeral.get(character);
-	    	number += toNumber(value, lastValue);
-	    	lastValue = value;
-	    }
-	    return number;
+            Integer number = 0, lastValue = 0;
+            char[] romanNumerals = roman.toUpperCase().toCharArray();
+            for (int i = romanNumerals.length - 1; i > -1 ; i--) {
+                String character = String.valueOf(romanNumerals[i]);
+                Integer value = numberByNumeral.get(character);
+                number += toNumber(value, lastValue);
+                lastValue = value;
+            }
+            return number;
 	}
 	
 	/**
@@ -87,7 +87,7 @@ public class RomanNumeralsConverter implements Converter<Integer,String> {
 	 *         not.
 	 */
 	private Integer toNumber(Integer value, Integer lastValue){
-		return lastValue > value ? -1 * value : value;
+            return lastValue > value ? -1 * value : value;
 	}
 
 }
