@@ -44,6 +44,7 @@ public class RomanNumeralsConverter implements Converter<Integer, String> {
 	 * @return roman numerals
 	 */
 	public String from(Integer number) {
+<<<<<<< HEAD
 		StringBuilder string = new StringBuilder();
 		int remainder = number;
 		for (Entry<String, Integer> entry : numberByNumeral.entrySet()) {
@@ -53,6 +54,17 @@ public class RomanNumeralsConverter implements Converter<Integer, String> {
 			}
 		}
 		return string.toString();
+=======
+            StringBuilder string = new StringBuilder();  
+            int remainder = number;
+            for (Entry<String, Integer> entry : numberByNumeral.entrySet()) {
+               while (remainder >= entry.getValue()) {
+                  string.append(entry.getKey());
+                  remainder -= entry.getValue();
+               }
+            }
+            return string.toString();
+>>>>>>> 6995e3e77d6fb88bacdf04eb2b3655dc768720b6
 	}
 
 	/**
@@ -63,6 +75,7 @@ public class RomanNumeralsConverter implements Converter<Integer, String> {
 	 * @return arabic integer
 	 */
 	public Integer to(String roman) {
+<<<<<<< HEAD
 		Integer number = 0, lastValue = 0;
 		char[] romanNumerals = roman.toUpperCase().toCharArray();
 		for (int i = romanNumerals.length - 1; i > -1; i--) {
@@ -72,6 +85,17 @@ public class RomanNumeralsConverter implements Converter<Integer, String> {
 			lastValue = value;
 		}
 		return number;
+=======
+            Integer number = 0, lastValue = 0;
+            char[] romanNumerals = roman.toUpperCase().toCharArray();
+            for (int i = romanNumerals.length - 1; i > -1 ; i--) {
+                String character = String.valueOf(romanNumerals[i]);
+                Integer value = numberByNumeral.get(character);
+                number += toNumber(value, lastValue);
+                lastValue = value;
+            }
+            return number;
+>>>>>>> 6995e3e77d6fb88bacdf04eb2b3655dc768720b6
 	}
 
 	/**
@@ -88,8 +112,13 @@ public class RomanNumeralsConverter implements Converter<Integer, String> {
 	 *         the previously iterated numeral or the positively signed value if
 	 *         not.
 	 */
+<<<<<<< HEAD
 	private Integer toNumber(Integer value, Integer lastValue) {
 		return lastValue > value ? -1 * value : value;
+=======
+	private Integer toNumber(Integer value, Integer lastValue){
+            return lastValue > value ? -1 * value : value;
+>>>>>>> 6995e3e77d6fb88bacdf04eb2b3655dc768720b6
 	}
 
 }
