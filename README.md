@@ -12,7 +12,5 @@ Remaining Issues:
 * these issues aren't logged as issues, enumerating them here is pretty lazy
 * the unit tests are testing more than one thing, which is generally uncool. for now i think the symmetry testing is more valuable, and they are testing a single behavior.
 * strong coupling in the CLI class, that could be much better decomposed.
-* strong assumption that the Roman Numeral system is adequately deprecated such that it is no longer subject to change
-* entering invalid input crashes this application. validation is something that warrants a dialog with the business.
-* maven, travis, the unit and acceptance level testing; overkill. assuming developers will ever need to do something with this code, I feel they'll either be grateful or indifferent.
-* front end is CLI, REST + shiny SPA would could be cool probably. 
+* entering invalid input crashes this application. 
+* maven, travis, the unit and acceptance level testing; overkill given the lack of change in roman numeral system recently.
