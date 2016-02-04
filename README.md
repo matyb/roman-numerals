@@ -9,6 +9,7 @@ I made note @ commit 95638dbcc0352a118e6e2b67f660ed553c5be955 to engage whomever
 
 Remaining Issues:
 =================
+* these issues aren't logged as issues, enumerating them here is pretty lazy
 * the unit tests are testing more than one thing, which is generally uncool. for now i think the symmetry testing is more valuable, and they are testing a single behavior.
 * strong coupling in the CLI class, that could be much better decomposed.
 * strong assumption that the Roman Numeral system is adequately deprecated such that it is no longer subject to change
