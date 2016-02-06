@@ -5,12 +5,10 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import com.pillar.conversions.utils.Converter;
-
 /**
  * A class for converting to and from roman numerals and arabic integers.
  */
-public class RomanNumeralsConverter implements Converter<Integer, String> {
+public class RomanNumeralsConverter {
 
 	private final Map<String, Integer> numberByNumeral;
 
@@ -43,53 +41,55 @@ public class RomanNumeralsConverter implements Converter<Integer, String> {
 	 *            integer
 	 * @return roman numerals
 	 */
-	public String from(Integer number) {
-		StringBuilder string = new StringBuilder();
-		int remainder = number;
-		for (Entry<String, Integer> entry : numberByNumeral.entrySet()) {
-			while (remainder >= entry.getValue()) {
-				string.append(entry.getKey());
-				remainder -= entry.getValue();
+	public String convertIntegerToRomanNumerals(Integer arabicInteger) {
+		StringBuilder romanNumeralsBuilder = new StringBuilder();
+		int remainder = arabicInteger;
+		for (Entry<String, Integer> numeralKeyArabicValue : numberByNumeral.entrySet()) {
+			while (remainder >= numeralKeyArabicValue.getValue()) {
+				romanNumeralsBuilder.append(numeralKeyArabicValue.getKey());
+				remainder -= numeralKeyArabicValue.getValue();
 			}
 		}
-		return string.toString();
+		return romanNumeralsBuilder.toString();
 	}
 
 	/**
 	 * Convert a string of roman numerals into an arabic integer.
 	 * 
-	 * @param roman
-	 *            numerals
+	 * @param romanNumeralsString
+	 *            roman numerals
 	 * @return arabic integer
 	 */
-	public Integer to(String roman) {
-		Integer number = 0, lastValue = 0;
-		char[] romanNumerals = roman.toUpperCase().toCharArray();
+	public Integer convertRomanNumeralsToInteger(String romanNumeralsString) {
+		Integer total = 0;
+		String lastNumeral = "";
+		char[] romanNumerals = romanNumeralsString.toUpperCase().toCharArray();
 		for (int i = romanNumerals.length - 1; i > -1; i--) {
-			String character = String.valueOf(romanNumerals[i]);
-			Integer value = numberByNumeral.get(character);
-			number += toNumber(value, lastValue);
-			lastValue = value;
+			String numeral = String.valueOf(romanNumerals[i]);
+			total += getIntegerValueFromAdjacentNumerals(numeral, lastNumeral);
+			lastNumeral = numeral;
 		}
-		return number;
+		return total;
 	}
 
 	/**
 	 * Assumes traversal from Right to Left when totaling the arabic value of
-	 * roman numerals, can resolve an arabic value from 2 adjacent numeral's
-	 * arabic values.
+	 * roman numerals, can resolve an arabic value from 2 adjacent numeral's.
 	 * 
-	 * @param value
-	 *            arabic value of currently iterated numeral (left of)
-	 * @param lastValue
-	 *            arabic value of last iterated numeral right and adjacent of
+	 * @param leftNumeral
+	 *            currently iterated numeral (left of)
+	 * @param rightNumeralValue
+	 *            last iterated numeral right and adjacent of
 	 *            the currently iterated numeral
 	 * @return negated value if currently iterated numeral is a lower value than
 	 *         the previously iterated numeral or the positively signed value if
 	 *         not.
 	 */
-	private Integer toNumber(Integer value, Integer lastValue) {
-		return lastValue > value ? -1 * value : value;
+	private Integer getIntegerValueFromAdjacentNumerals(String leftNumeral, String rightNumeral) {
+		Integer leftNumeralIntegerValue = numberByNumeral.get(leftNumeral);
+		Integer rightNumeralIntegerValue = "".equals(rightNumeral) ? 0 : numberByNumeral.get(rightNumeral);
+		return rightNumeralIntegerValue > leftNumeralIntegerValue ? 
+				-1 * leftNumeralIntegerValue : leftNumeralIntegerValue;
 	}
 
 }

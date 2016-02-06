@@ -28,11 +28,11 @@ public class RomanNumeralsConverterCLI {
 		String output = "";
 		try {
 			if (line.matches("\\d+")) {
-				output = romanNumeralsConverter.from(Integer.parseInt(line));
+				output = romanNumeralsConverter.convertIntegerToRomanNumerals(Integer.parseInt(line));
 				System.out.println(
 						String.format("For the number you entered: %s the numeral equivalent is: %s", line, output));
 			} else {
-				output = "" + romanNumeralsConverter.to(line);
+				output = "" + romanNumeralsConverter.convertRomanNumeralsToInteger(line);
 				System.out.println(
 						String.format("For the numeral you entered: %s the numeric equivalent is: %s", line, output));
 			}

@@ -31,7 +31,7 @@ public class RomanNumeralsConverterTest {
 	public void testNumberToNumeral() throws Exception {
 		RomanNumeralsConverter romanNumerals = new RomanNumeralsConverter();
 		for (Entry<String, Integer> entry : cases.entrySet()) {
-			assertEquals("Converting ARABIC -> ROMAN failed.", entry.getKey(), romanNumerals.from(entry.getValue()));
+			assertEquals("Converting ARABIC -> ROMAN failed.", entry.getKey(), romanNumerals.convertIntegerToRomanNumerals(entry.getValue()));
 		}
 	}
 
@@ -40,7 +40,7 @@ public class RomanNumeralsConverterTest {
 	public void testNumeralToNumber() throws Exception {
 		RomanNumeralsConverter romanNumerals = new RomanNumeralsConverter();
 		for (Entry<String, Integer> entry : cases.entrySet()) {
-			assertEquals("Converting ROMAN -> ARABIC failed.", entry.getValue(), romanNumerals.to(entry.getKey()));
+			assertEquals("Converting ROMAN -> ARABIC failed.", entry.getValue(), romanNumerals.convertRomanNumeralsToInteger(entry.getKey()));
 		}
 	}
 
