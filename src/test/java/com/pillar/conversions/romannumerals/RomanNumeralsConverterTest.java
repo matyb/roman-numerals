@@ -9,8 +9,6 @@ import java.util.Map.Entry;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.pillar.conversions.romannumerals.RomanNumeralsConverter;
-
 public class RomanNumeralsConverterTest {
 
 	private Map<String, Integer> cases;
@@ -32,20 +30,36 @@ public class RomanNumeralsConverterTest {
 
 	// TODO: enforce symmetry without testing more than one thing in a method!
 	@Test
-	public void testNumberToNumeral() throws Exception {
-		RomanNumeralsConverter romanNumerals = new RomanNumeralsConverter();
-		for (Entry<String, Integer> entry : cases.entrySet()) {
-			assertEquals("Converting ARABIC -> ROMAN failed.", entry.getKey(), romanNumerals.convertIntegerToRomanNumerals(entry.getValue()));
-		}
+	public void testArabicIntegerToRomanNumeral() throws Exception {
+		testConversion("ARABIC -> ROMAN", new ConversionTest() {
+			public void test(RomanNumeralsConverter converter, String roman, Integer arabic) throws Exception {
+				assertEquals(roman, converter.convertIntegerToRomanNumerals(arabic));
+			}
+		});
 	}
 
 	// TODO: enforce symmetry without testing more than one thing in a method!
 	@Test
-	public void testNumeralToNumber() throws Exception {
-		RomanNumeralsConverter romanNumerals = new RomanNumeralsConverter();
-		for (Entry<String, Integer> entry : cases.entrySet()) {
-			assertEquals("Converting ROMAN -> ARABIC failed.", entry.getValue(), romanNumerals.convertRomanNumeralsToInteger(entry.getKey()));
+	public void testRomanNumeralToArabicInteger() throws Exception {
+		testConversion("ROMAN -> ARABIC", new ConversionTest() {
+			public void test(RomanNumeralsConverter converter, String roman, Integer arabic) throws Exception {
+				assertEquals(arabic, converter.convertRomanNumeralsToInteger(roman));
+			}
+		});
+	}
+	
+	void testConversion(String conversionDescription, ConversionTest test) throws Exception{
+		for(Entry<String, Integer> numeralAndNumber : cases.entrySet()){
+			try{
+				test.test(new RomanNumeralsConverter(), numeralAndNumber.getKey(), numeralAndNumber.getValue());
+			}catch(AssertionError|Exception x){
+				throw new AssertionError(String.format("Converting %s failed. %s", conversionDescription, x.getMessage()), x);
+			}
 		}
 	}
 
+	interface ConversionTest {
+		void test(RomanNumeralsConverter converter, String roman, Integer arabic) throws Exception;
+	}
+	
 }
