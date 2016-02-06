@@ -21,8 +21,12 @@ public class RomanNumeralsConverterTest {
 		cases.put("I", 1);
 		cases.put("III", 3);
 		cases.put("IX", 9);
-		cases.put("MLXVI", 1066);
+		cases.put("XLI", 41);
+		cases.put("XCI", 91);
+		cases.put("CDI", 401);
+		cases.put("DI", 501);
 		cases.put("CMLXXXIX", 989);
+		cases.put("MLXVI", 1066);
 		cases.put("MCMLXXXIX", 1989);
 	}
 
